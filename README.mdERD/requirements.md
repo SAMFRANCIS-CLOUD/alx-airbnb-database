@@ -112,3 +112,59 @@
   - `email` in User table
   - `property_id` in Property and Booking tables
   - `booking_id` in Booking and Payment tables
+# Database Normalization - AirBnB Project
+
+## Objective
+To normalize the AirBnB database schema to **Third Normal Form (3NF)** by eliminating redundancies and ensuring efficient structure.
+
+---
+
+## 1. First Normal Form (1NF)
+
+**Rule:** Eliminate repeating groups and ensure each field contains only atomic values.
+
+✅ **All tables are in 1NF**:
+- Every column contains atomic (indivisible) values.
+- There are no repeating fields or arrays.
+
+Example:
+- The `User` table has individual fields for `first_name`, `last_name`, `email`, etc.
+- The `Booking` table stores one record per reservation.
+
+---
+
+## 2. Second Normal Form (2NF)
+
+**Rule:** Ensure that all non-key attributes are fully dependent on the **entire** primary key (only applies to composite keys).
+
+✅ **All tables use single-column primary keys (UUIDs)**, so:
+- There are no partial dependencies.
+- Every non-key attribute depends on its table’s primary key.
+
+---
+
+## 3. Third Normal Form (3NF)
+
+**Rule:** Eliminate transitive dependencies (non-key columns should not depend on other non-key columns).
+
+✅ **Design passes 3NF**:
+- In the `User` table, `role` is directly related to the user — not another attribute.
+- In the `Booking` table, `total_price` depends on the booking itself, not on `start_date` or `end_date` alone.
+- All columns in all tables depend only on the primary key.
+
+---
+
+## Summary
+
+The database schema follows normalization rules:
+
+| Table      | 1NF | 2NF | 3NF |
+|------------|-----|-----|-----|
+| User       | ✅  | ✅  | ✅  |
+| Property   | ✅  | ✅  | ✅  |
+| Booking    | ✅  | ✅  | ✅  |
+| Payment    | ✅  | ✅  | ✅  |
+| Review     | ✅  | ✅  | ✅  |
+| Message    | ✅  | ✅  | ✅  |
+
+✅ The schema is fully normalized to **3NF**. No further changes were needed based on the design provided.
